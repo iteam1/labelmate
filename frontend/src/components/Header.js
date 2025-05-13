@@ -6,44 +6,48 @@ const Header = () => {
   };
   
   return (
-    <header className="header" style={headerStyle}>
-      <div className="logo">
-        <h1 onClick={() => handleNavigation('/')} style={{cursor: 'pointer'}}>LabelMate</h1>
+    <header className="app-header">
+      <div className="header-container">
+        <div className="logo">
+          <h1 onClick={() => handleNavigation('/')}>
+            <span className="logo-label">Label</span>
+            <span className="logo-mate">Mate</span>
+            <span className="logo-tag">Legacy Code Migration Assistant</span>
+          </h1>
+        </div>
+        <nav className="main-nav">
+          <ul>
+            <li>
+              <a href="/" className="nav-link">
+                <i className="nav-icon projects-icon">📂</i>
+                <span>Projects</span>
+              </a>
+            </li>
+            <li>
+              <a href="/files" className="nav-link">
+                <i className="nav-icon files-icon">📄</i>
+                <span>Files</span>
+              </a>
+            </li>
+            <li>
+              <a href="/upload" className="nav-link">
+                <i className="nav-icon upload-icon">⬆️</i>
+                <span>Upload File</span>
+              </a>
+            </li>
+            <li>
+              <a href="/upload-folder" className="nav-link">
+                <i className="nav-icon folder-icon">📁</i>
+                <span>Upload Project</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul>
-          <li>
-            <a href="/" style={linkStyle}>Projects</a>
-          </li>
-          <li>
-            <a href="/files" style={linkStyle}>Files</a>
-          </li>
-          <li>
-            <a href="/upload" style={linkStyle}>Upload File</a>
-          </li>
-          <li>
-            <a href="/upload-folder" style={linkStyle}>Upload Project</a>
-          </li>
-        </ul>
-      </nav>
     </header>
   );
 };
 
-const headerStyle = {
-  background: '#333',
-  color: '#fff',
-  textAlign: 'center',
-  padding: '10px',
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-};
-
-const linkStyle = {
-  color: '#fff',
-  textDecoration: 'none',
-  margin: '0 15px',
-};
+// Styles moved to CSS file
 
 export default Header;

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import './CodeEditor.css';
 import './styles/ProjectStyles.css';
+import './styles/HeaderStyles.css';
 import Header from './components/Header';
 import FileUpload from './components/FileUpload';
 import FileList from './components/FileList';
