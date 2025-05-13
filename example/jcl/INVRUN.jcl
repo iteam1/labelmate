@@ -1,0 +1,60 @@
+//INVRUN   JOB (ACCT#),'INVENTORY MANAGEMENT',
+//             CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),
+//             NOTIFY=&SYSUID
+//*
+//*-------------------------------------------------------------------*
+//* JOB TO RUN THE INVENTORY MANAGEMENT PROGRAM                       *
+//*-------------------------------------------------------------------*
+//*
+//JOBLIB   DD DSN=SYS1.COBLIB,DISP=SHR
+//         DD DSN=USER.LOADLIB,DISP=SHR
+//*
+//STEP010  EXEC PGM=INVNTRY
+//*
+//STEPLIB  DD DSN=USER.LOADLIB,DISP=SHR
+//*
+//INVFILE  DD DSN=USER.INVENTORY.MASTER,DISP=SHR
+//*
+//TRANFILE DD DSN=USER.INVENTORY.TRANS,DISP=SHR
+//*
+//RPTFILE  DD SYSOUT=*
+//*
+//REORDER  DD DSN=USER.INVENTORY.REORDER,
+//            DISP=(NEW,CATLG,DELETE),
+//            UNIT=SYSDA,
+//            SPACE=(TRK,(5,2),RLSE),
+//            DCB=(RECFM=FB,LRECL=80,BLKSIZE=0)
+//*
+//SYSOUT   DD SYSOUT=*
+//*
+//SYSUDUMP DD SYSOUT=*
+//*
+//SYSIN    DD DUMMY
+//*
+//STEP020  EXEC PGM=IDCAMS,COND=(0,LT,STEP010)
+//*
+//SYSPRINT DD SYSOUT=*
+//*
+//SYSIN    DD *
+  REPRO INDATASET(USER.INVENTORY.BACKUP) -
+        OUTDATASET(USER.INVENTORY.MASTER) -
+        REPLACE
+/*
+//*
+//STEP030  EXEC PGM=SORT,COND=(0,LT,STEP010)
+//*
+//SYSOUT   DD SYSOUT=*
+//*
+//SORTIN   DD DSN=USER.INVENTORY.REORDER,DISP=SHR
+//*
+//SORTOUT  DD DSN=USER.INVENTORY.REORDER.SORTED,
+//            DISP=(NEW,CATLG,DELETE),
+//            UNIT=SYSDA,
+//            SPACE=(TRK,(5,2),RLSE),
+//            DCB=(RECFM=FB,LRECL=80,BLKSIZE=0)
+//*
+//SYSIN    DD *
+  SORT FIELDS=(1,10,CH,A)
+  SUM FIELDS=NONE
+/*
+//*
