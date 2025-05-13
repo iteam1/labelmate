@@ -1,25 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const handleNavigation = (path) => {
+    window.location.href = path;
+  };
+  
   return (
     <header className="header" style={headerStyle}>
       <div className="logo">
-        <h1>LabelMate</h1>
+        <h1 onClick={() => handleNavigation('/')} style={{cursor: 'pointer'}}>LabelMate</h1>
       </div>
       <nav>
         <ul>
           <li>
-            <Link to="/" style={linkStyle}>Projects</Link>
+            <a href="/" style={linkStyle}>Projects</a>
           </li>
           <li>
-            <Link to="/files" style={linkStyle}>Files</Link>
+            <a href="/files" style={linkStyle}>Files</a>
           </li>
           <li>
-            <Link to="/upload" style={linkStyle}>Upload File</Link>
+            <a href="/upload" style={linkStyle}>Upload File</a>
           </li>
           <li>
-            <Link to="/upload-folder" style={linkStyle}>Upload Project</Link>
+            <a href="/upload-folder" style={linkStyle}>Upload Project</a>
           </li>
         </ul>
       </nav>

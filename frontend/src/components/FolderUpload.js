@@ -42,13 +42,12 @@ const FolderUpload = () => {
         }
       });
 
+      // Store the successful upload message
       setMessage(`Project "${res.data.project}" created successfully with ${res.data.files.length} files`);
       setIsLoading(false);
       
-      // Redirect to the project page after a short delay
-      setTimeout(() => {
-        history.push(`/projects/${res.data.project}`);
-      }, 1500);
+      // Force a direct navigation to the project page
+      window.location.href = `/projects/${res.data.project}`;
     } catch (err) {
       setError(err.response?.data?.error || 'Error uploading project');
       setIsLoading(false);

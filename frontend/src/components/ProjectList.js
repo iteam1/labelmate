@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const ProjectList = () => {
@@ -37,20 +36,20 @@ const ProjectList = () => {
       {error && <div className="alert alert-error">{error}</div>}
       
       <div className="actions">
-        <Link to="/upload-folder" className="btn">
+        <a href="/upload-folder" className="btn">
           Upload New Project
-        </Link>
-        <Link to="/upload" className="btn">
+        </a>
+        <a href="/upload" className="btn">
           Upload Single File
-        </Link>
+        </a>
       </div>
       
       {projects.length === 0 ? (
         <div className="card">
           <p>No projects have been uploaded yet.</p>
-          <Link to="/upload-folder" className="btn">
+          <a href="/upload-folder" className="btn">
             Upload Your First Project
-          </Link>
+          </a>
         </div>
       ) : (
         <div className="projects-grid">
@@ -63,9 +62,9 @@ const ProjectList = () => {
               <p>
                 <strong>Created:</strong> {formatDate(project.created_at)}
               </p>
-              <Link to={`/projects/${project.name}`} className="btn">
+              <a href={`/projects/${project.name}`} className="btn">
                 Open Project
-              </Link>
+              </a>
             </div>
           ))}
         </div>
